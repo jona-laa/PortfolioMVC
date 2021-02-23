@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PortfolioMVC.ViewComponents
 {
-    public class SkillsViewComponent : ViewComponent
+    public class Skills : ViewComponent
     {
         private readonly ApplicationDbContext db;
 
-        public SkillsViewComponent(ApplicationDbContext db)
+        public Skills(ApplicationDbContext db)
         {
             this.db = db;
         }
