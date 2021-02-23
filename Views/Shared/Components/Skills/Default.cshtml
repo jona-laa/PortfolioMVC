@@ -1,0 +1,9 @@
+@model IEnumerable<PortfolioMVC.Models.Skill>
+
+@foreach (var skill in Model)
+{
+    <div class="skill">
+        <i class="@skill.Icon fa-3x" aria-hidden="true"></i>
+        <span>@skill.SkillName</span>
+    </div>
+}

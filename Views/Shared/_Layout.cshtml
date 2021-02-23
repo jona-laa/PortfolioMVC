@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="icon" type="image/png" href="favicon.ico">
+	<link rel="apple-touch-icon" href="~/images/AppleTouchIcon.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+		integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+		crossorigin="anonymous">
+	<meta name="description" content="Jonathan's portfolio site">
+	<meta property="og:image" content="~/images/me.jpg">
+	<link rel="stylesheet" href="~/css/site.css">
+	<title>Jonathan Laasonen | @ViewData["title"]</title>
+</head>
+
+<body id="home">
+	<header class="hero">
+		<div class="header-content">
+			<nav class="main-menu">
+				<!-- Mobile meny - Hidden on default --> 
+                <a 
+                    href="" 
+                    onclick="event.preventDefault()"
+					id="main-menu-toggle" 
+                    aria-label="Toggle Mobile Menu">
+                    <svg 
+                        viewBox="0 0 100 80" 
+                        width="40"
+						height="40">
+						<rect 
+                            width="90" 
+                            height="10" 
+                            fill="#f7f7f7">
+                        </rect>
+						<rect 
+                            y="30" 
+                            width="90" 
+                            height="10" 
+                            fill="#f7f7f7">
+                        </rect>
+						<rect 
+                            y="60" 
+                            width="90" 
+                            height="10" 
+                            fill="#f7f7f7">
+                        </rect>
+					</svg>
+                </a>
+
+                <!-- Main Menu -->
+				<ul id="menu-main-menu" class="menu">
+					<li>
+                        <a 
+                            href="#about-me" 
+                            class="menu-link">
+                            About Me
+                        </a>
+                    </li>
+					<li>
+                        <a 
+                            href="#skillset" 
+                            class="menu-link">
+                            Skillset
+                        </a>
+                    </li>
+					<li>
+                        <a 
+                            href="#resume" 
+                            class="menu-link">
+                            Resume
+                        </a>
+                    </li>
+					<li>
+                        <a 
+                            href="#portfolio" 
+                            class="menu-link">
+                            Portfolio
+                        </a>
+                    </li>
+                    <partial name="_LoginPartial" />
+				</ul>
+			</nav>
+
+			<div class="social">
+                <a 
+                    href="https://github.com/jona-laa/" 
+                    target="_blank" 
+                    class="icon-link"
+					aria-label="GitHub Link">
+                    <i class="fab fa-github fa-2x"></i>
+                </a> 
+                <a
+					href="https://www.linkedin.com/in/jonathan-laasonen-974aa617a/" 
+                    target="_blank" 
+                    class="icon-link"
+					aria-label="LinkedIn Link">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+		</div>
+		<div class="hero-content">
+			<h1 class="title">Jonathan Laasonen</h1>
+			<p class="tagline">Web Developer</p>
+            <a href="#about-me" 
+                class="arrow-link"
+				aria-label="Scroll to About Section">
+                <i class="fas fa-chevron-down fa-3x"></i>
+            </a>
+		</div>
+	</header>
+	@RenderBody()
+	<footer class="bg-dark">
+        <small>&copy; 2020 Jona.Laa.Dev </small>
+        <!-- To Top Button --> 
+        <a 
+            href="#home" 
+            id="goTop"
+			class="btn-top" 
+            aria-label="Go To Top"
+        >
+            <svg 
+                class="arrow up" 
+                xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="5 0 50 80" 
+                xml:space="preserve">
+				    <polyline 
+                        fill="none" 
+                        stroke="#FFFFFF" 
+                        stroke-width="8" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+					    points="0.375, 35.375 28.375, 0.375 58.67, 35.375 "/>
+			</svg>
+        </a>
+    </footer>
+
+    <!-- Scripts -->
+	<script src="//code.jquery.com/jquery-latest.js"></script>
+	<script src="~/js/site.js"></script>
+	<script src="~/js/utils.js"></script>
+	<script src="~/js/nav.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
