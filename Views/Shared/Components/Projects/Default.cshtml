@@ -1,0 +1,16 @@
+@inject PortfolioMVC.Models.DateFormat Format
+@model IEnumerable<PortfolioMVC.Models.Project>
+
+@foreach (var project in Model)
+{
+    <div class="portfolio-item" style="background: url('/images/uploads/@(project.ImageName)') no-repeat center center/cover">
+        <div class="portfolio-item_overlay">
+        <div class="portfolio-item_content">
+            <h3><a href="@project.Url" target="_blank">@project.Title</a></h3>
+            <p>@project.Description</p>
+        </div>
+        </div>
+    </div>   
+}
+
+
