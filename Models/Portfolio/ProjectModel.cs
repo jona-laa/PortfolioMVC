@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http; 
 
 namespace PortfolioMVC.Models
 {
@@ -12,10 +14,13 @@ namespace PortfolioMVC.Models
         [Required(ErrorMessage = "Field is required")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
+        [Required(ErrorMessage = "Field is required"), DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Choose an image")]
-        public string Image { get; set; }
+        [Display(Name = "Image Name"), Column(TypeName = "nvarchar(100)")]
+        public string ImageName { get; set; }
+
+        [NotMapped, Display(Name = "Upload Image")]
+        public IFormFile ImageFile { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+@inject PortfolioMVC.Models.DateFormat Format
+@model IEnumerable<PortfolioMVC.Models.About>
+
+@foreach (var post in Model)
+{
+    <div class="avatar-container">  
+        <div class="avatar" style="background: url('/images/uploads/@(post.ImageName)') no-repeat center center/cover"></div>
+    </div>
+
+    <div>
+        <div>
+        <h3>@post.Title</h3>
+        <p>@Html.Raw(post.Content)</p>
+        </div>
+    </div>    
+}

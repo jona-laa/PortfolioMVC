@@ -3,58 +3,62 @@
 }
 
 <main>
-		<!-- About Me -->
-		<section id="about-me" class="section-padding bg-light">
-			<div class="section-header">
-				<h2>About Me</h2>
-			</div>
-			<div class="divider"></div>
-			<div class="about-container">
-				<!-- About will render here -->
-			</div>
-		</section>
-        
-        <!-- Skillset section -->
-        <section id="skillset" class="bg-dark">
-            <h2>Skillset</h2>
-            <div class="row duo">
-                <div class="col"><img class="col-cover" src="./images/skillset-bg.jpg" alt=""></div>
-                <div class="col">
-                    <div class="col-2">
-                        <h3 class="centered-heading">Some of My Skills</h3>
-                        <div class="skills-container">
-                            <!-- Skills will render here -->
-                            <vc:skills />
-                        </div>
+    <!-- About Me -->
+    <section id="about-me" class="section-padding bg-light">
+        <div class="section-header">
+            <h2>About Me</h2>
+        </div>
+        <div class="divider"></div>
+        <div class="about-container">
+            <!-- About will render here -->
+            <vc:about />
+        </div>
+    </section>
+    
+    <!-- Skillset section -->
+    <section id="skillset" class="bg-dark">
+        <h2>Skillset</h2>
+        <div class="row duo">
+            <div class="col"><img class="col-cover" src="./images/skillset-bg.jpg" alt=""></div>
+            <div class="col">
+                <div class="col-2">
+                    <h3 class="centered-heading">Some of My Skills</h3>
+                    <div class="skills-container">
+                        <!-- Skills will render here -->
+                        <vc:skills />
                     </div>
-                </div><!-- col end  -->
-            </div><!-- row end -->
-        </section>
-        
-        <!-- Resume -->
-		<section id="resume" class="section-padding bg-light">
-			<h2>Resume</h2>
-            <div class="divider"></div>
-            <h3 class="centered-heading">Work</h3>
-			<div class="row trio work">
-                <!-- Work will render here -->
-			</div>	
-            <div class="divider"></div>
-            <h3 class="centered-heading">Studies</h3>
-			<div class="row trio studies">
-                <!-- Studies will render here -->
-			</div>
-		</section><!-- Resume End -->
-		
-        <!-- Portfolio -->
-		<section id="portfolio" class="section-padding bg-dark">
-			<h2>Portfolio</h2>
-			<div class="divider"></div>
-			<div class="row trio portfolio-container">
-                <!-- Portfolio will render here -->
-            </div>
-		</section><!-- Portfolio End -->
-		
-        <!-- Contact -->
-		<partial name="_Contact"/>
-	</main>
+                </div>
+            </div><!-- col end  -->
+        </div><!-- row end -->
+    </section>
+    
+    <!-- Resume -->
+    <section id="resume" class="section-padding bg-light">
+        <h2>Resume</h2>
+        <div class="divider"></div>
+        <h3 class="centered-heading">Work</h3>
+        <div class="row trio work">
+            <!-- Work will render here -->
+            <vc:work />
+        </div>	
+        <div class="divider"></div>
+        <h3 class="centered-heading">Studies</h3>
+        <div class="row trio studies">
+            <!-- Studies will render here -->
+            <vc:courses />
+        </div>
+    </section><!-- Resume End -->
+    
+    <!-- Portfolio -->
+    <section id="portfolio" class="section-padding bg-dark">
+        <h2>Portfolio</h2>
+        <div class="divider"></div>
+        <div class="row trio portfolio-container">
+            <!-- Portfolio will render here -->
+            <vc:projects />
+        </div>
+    </section><!-- Portfolio End -->
+    
+    <!-- Contact -->
+    <partial name="_Contact"/>
+</main>

@@ -1,0 +1,12 @@
+@inject PortfolioMVC.Models.DateFormat Format
+@model IEnumerable<PortfolioMVC.Models.Course>
+
+@foreach (var course in Model)
+{
+    <div class="resume-item">
+        <h4>@course.CourseName</h4>
+        <span>@course.Institution</span><br>
+        <span>@Format.ToReadableDate(course.DateStart) – @Format.ToReadableDate(course.DateEnd)</span>
+        <p>@course.Description</p>
+    </div>
+}
