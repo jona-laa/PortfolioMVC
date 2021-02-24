@@ -4,19 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PortfolioMVC.ViewComponents
 {
-    public class Skills : ViewComponent
+    public class Courses : ViewComponent
     {
         private readonly ApplicationDbContext db;
 
-        public Skills(ApplicationDbContext db)
+        public Courses(ApplicationDbContext db)
         {
             this.db = db;
         }
 
         public IViewComponentResult Invoke()
         {
-            var skills = db.Skills.ToArray();
-            return View(skills);
+            var courses = db.Courses
+                .OrderByDescending(x => x.DateStart)
+                .ToArray();
+            
+            return View(courses);
         }
     }
 }

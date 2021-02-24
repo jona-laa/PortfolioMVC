@@ -1,0 +1,12 @@
+@inject PortfolioMVC.Models.DateFormat Format
+@model IEnumerable<PortfolioMVC.Models.Work>
+
+@foreach (var job in Model)
+{
+    <div class="resume-item">
+        <h4>@job.Company</h4>
+        <span>@job.Title</span><br>
+        <span>@Format.ToReadableDate(job.DateStart) – @Format.ToReadableDate(job.DateEnd)</span>
+        <p>@job.Description</p>
+    </div>
+}

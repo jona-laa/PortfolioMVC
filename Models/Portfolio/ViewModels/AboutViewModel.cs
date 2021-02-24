@@ -8,7 +8,7 @@ namespace Models.Portfolio.ViewModels
         [Required(ErrorMessage = "Field is required")]
         public string Title { get; set; }
 
-        [Required(ErrorMessage = "Field is required")]
+        [Required(ErrorMessage = "Field is required"), DataType(DataType.MultilineText)]
         public string Content { get; set; }
         
         [Required(ErrorMessage = "Choose an image")]

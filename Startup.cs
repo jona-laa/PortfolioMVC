@@ -12,6 +12,7 @@ using PortfolioMVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PortfolioMVC.Models;
 
 namespace PortfolioMVC
 {
@@ -26,6 +27,7 @@ namespace PortfolioMVC
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<DateFormat>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
