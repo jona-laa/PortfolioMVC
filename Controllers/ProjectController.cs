@@ -32,25 +32,6 @@ namespace PortfolioMVC.Controllers
             return View(await _context.Projects.ToListAsync());
         }
 
-        // GET: Project/Details/5
-        [Authorize]
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var project = await _context.Projects
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
-            {
-                return NotFound();
-            }
-
-            return View(project);
-        }
-
         // GET: Project/Create
         [Authorize]
         public IActionResult Create()
@@ -162,6 +143,14 @@ namespace PortfolioMVC.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var project = await _context.Projects.FindAsync(id);
+
+            // Delete image from wwwroot/images/uploads
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", project.ImageName);
+            if (System.IO.File.Exists(imagePath))
+            {
+                System.IO.File.Delete(imagePath);
+            }
+
             _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

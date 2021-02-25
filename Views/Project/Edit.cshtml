@@ -4,46 +4,38 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Project</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<main>
+    @* <h1>Create</h1> *@
+    <section id="edit" class="section-padding">
+        <h2>Edit Project</h2>
+        <form id="edit-form" asp-action="Edit">
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Url" class="control-label"></label>
-                <input asp-for="Url" class="form-control" />
+            <div>
+                <input asp-for="Url" placeholder="Url" />
+                <label asp-for="Url"></label>
                 <span asp-validation-for="Url" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+            <div>
+                <input asp-for="Title" placeholder="Title" />
+                <label asp-for="Title"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+            <div class="textarea">
+                <textarea asp-for="Description" placeholder="Description"></textarea>
+                <label asp-for="Description"></label>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageName" class="control-label"></label>
-                <input asp-for="ImageName" class="form-control" />
+            <div>
+                <input asp-for="ImageName" />
+                <label asp-for="ImageName"></label>
                 <span asp-validation-for="ImageName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form_buttons">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </section>
+</main>
