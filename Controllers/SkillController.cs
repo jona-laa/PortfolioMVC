@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,40 +21,23 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Skill
+        [Authorize]        
         public async Task<IActionResult> Index()
         {
             return View(await _context.Skills.ToListAsync());
         }
 
-        // GET: Skill/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var skill = await _context.Skills
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (skill == null)
-            {
-                return NotFound();
-            }
-
-            return View(skill);
-        }
-
         // GET: Skill/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Skill/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,SkillName,Icon")] Skill skill)
         {
             if (ModelState.IsValid)
@@ -66,6 +50,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Skill/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,8 +67,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Skill/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,SkillName,Icon")] Skill skill)
@@ -117,6 +101,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Skill/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +120,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Skill/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

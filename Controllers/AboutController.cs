@@ -9,6 +9,7 @@ using PortfolioMVC.Data;
 using PortfolioMVC.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PortfolioMVC.Controllers
 {
@@ -24,30 +25,33 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: About
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.About.ToListAsync());
         }
 
-        // GET: About/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        // // GET: About/Details/5
+        // [Authorize]
+        // public async Task<IActionResult> Details(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            var about = await _context.About
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (about == null)
-            {
-                return NotFound();
-            }
+        //     var about = await _context.About
+        //         .FirstOrDefaultAsync(m => m.Id == id);
+        //     if (about == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            return View(about);
-        }
+        //     return View(about);
+        // }
 
         // GET: About/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -56,6 +60,7 @@ namespace PortfolioMVC.Controllers
         // POST: About/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageFile,IsPublished")] About about)
         {
             if (ModelState.IsValid)
@@ -80,6 +85,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: About/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -98,6 +104,7 @@ namespace PortfolioMVC.Controllers
         // POST: About/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,IsPublished")] About about)
         {
             if (id != about.Id)
@@ -129,6 +136,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: About/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +157,7 @@ namespace PortfolioMVC.Controllers
         // POST: About/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var about = await _context.About.FindAsync(id);

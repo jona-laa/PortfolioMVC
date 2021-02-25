@@ -9,6 +9,7 @@ using PortfolioMVC.Data;
 using PortfolioMVC.Models;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PortfolioMVC.Controllers
 {
@@ -25,12 +26,14 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Project
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Projects.ToListAsync());
         }
 
         // GET: Project/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,12 +52,14 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Project/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Project/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Url,Title,Description,ImageFile")] Project project)
@@ -81,6 +86,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Project/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,6 +103,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Project/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Url,Title,Description,ImageName")] Project project)
@@ -130,6 +137,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Project/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -150,6 +158,7 @@ namespace PortfolioMVC.Controllers
         // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var project = await _context.Projects.FindAsync(id);

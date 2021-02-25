@@ -18,7 +18,7 @@ namespace PortfolioMVC.Models
         [Display(Name = "Image Name"), Column(TypeName = "nvarchar(100)")]
         public string ImageName { get; set; }
 
-        [NotMapped, Display(Name = "Upload Image")]
+        [NotMapped, Required(ErrorMessage = "Field is required"), Display(Name = "Upload Image")]
         public IFormFile ImageFile { get; set; }
 
         public bool IsPublished { get; set; }

@@ -3,51 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
+<main>
+    @* <h1>About</h1> *@
 
-<h1>Index</h1>
+    <section id="edit-items" class="bg-light section-padding">
+        <h2>About Articles</h2>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <div id="edit-items_container" class="row">
+            @foreach (var item in Model) {
+                <div class="about-container">
+                    <div class="avatar-container">  
+                        <div class="avatar" style="background: url('/images/uploads/@(item.ImageName)') no-repeat center center/cover"></div>
+                    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsPublished)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPublished)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    <div>
+                        <div>
+                            <h3 class="left-align">@item.Title</h3>
+                            @Html.Raw(item.Content)
+                            <p>Published: @item.IsPublished</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edit-items_controls">
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </div>
+            }
+        </div>
+    </section>
+</main>

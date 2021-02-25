@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,65 +54,60 @@
                 </a>
 
                 <!-- Main Menu -->
-				<ul id="menu-main-menu" class="menu">
-					<li>
-                        <a 
-                            href="#about-me" 
-                            class="menu-link">
-                            About Me
-                        </a>
-                    </li>
-					<li>
-                        <a 
-                            href="#skillset" 
-                            class="menu-link">
-                            Skillset
-                        </a>
-                    </li>
-					<li>
-                        <a 
-                            href="#resume" 
-                            class="menu-link">
-                            Resume
-                        </a>
-                    </li>
-					<li>
-                        <a 
-                            href="#portfolio" 
-                            class="menu-link">
-                            Portfolio
-                        </a>
-                    </li>
-                    <partial name="_LoginPartial" />
-				</ul>
+                <partial name="_MenuPartial" />
 			</nav>
 
-			<div class="social">
-                <a 
-                    href="https://github.com/jona-laa/" 
-                    target="_blank" 
-                    class="icon-link"
-					aria-label="GitHub Link">
-                    <i class="fab fa-github fa-2x"></i>
-                </a> 
-                <a
-					href="https://www.linkedin.com/in/jonathan-laasonen-974aa617a/" 
-                    target="_blank" 
-                    class="icon-link"
-					aria-label="LinkedIn Link">
-                    <i class="fab fa-linkedin fa-2x"></i>
-                </a>
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <div class="social">
+                    <a 
+                        href="https://github.com/jona-laa/" 
+                        target="_blank" 
+                        class="icon-link"
+                        aria-label="GitHub Link">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a> 
+                    <a
+                        href="https://www.linkedin.com/in/jonathan-laasonen-974aa617a/" 
+                        target="_blank" 
+                        class="icon-link"
+                        aria-label="LinkedIn Link">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                </div>
+            }
+
+		</div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="hero-content">
+                <h1 class="title">Welcome</h1>
+                <p class="tagline centered">Choose Category to Edit from Menu</p>
             </div>
-		</div>
-		<div class="hero-content">
-			<h1 class="title">Jonathan Laasonen</h1>
-			<p class="tagline">Web Developer</p>
-            <a href="#about-me" 
-                class="arrow-link"
-				aria-label="Scroll to About Section">
-                <i class="fas fa-chevron-down fa-3x"></i>
-            </a>
-		</div>
+            @if(IsSectionDefined("heroContent"))
+            {
+                IgnoreSection("heroContent");
+            }
+        }
+        else 
+        {
+            @if(IsSectionDefined("heroContent"))
+            {
+                @RenderSection("heroContent")
+            }
+            else
+            {
+                <div class="hero-content">
+                    <h1 class="title">Jonathan Laasonen</h1>
+                    <p class="tagline">Web Developer</p>
+                    <a href="#about-me" 
+                        class="arrow-link"
+                        aria-label="Scroll to About Section">
+                        <i class="fas fa-chevron-down fa-3x"></i>
+                    </a>
+                </div>   
+            }
+        }
 	</header>
 	@RenderBody()
 	<footer class="bg-dark">

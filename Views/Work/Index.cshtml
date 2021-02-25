@@ -1,59 +1,32 @@
 @model IEnumerable<PortfolioMVC.Models.Work>
+@inject PortfolioMVC.Models.DateFormat Format
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<main>
+    @* <h1>About</h1> *@
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Company)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateStart)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateEnd)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateStart)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateEnd)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <section id="edit-items" class="bg-light section-padding">
+        <h2>Work</h2>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <div id="edit-items_container" class="row trio">
+            @foreach (var item in Model) {
+                <div class="resume-item">
+                    <h4>@item.Company</h4>
+                    <span>@item.Title</span><br>
+                    <span>@Format.ToReadableDate(item.DateStart) – @Format.ToReadableDate(item.DateEnd)</span>
+                    <p>@item.Description</p>
+
+                    <div class="edit-items_controls">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+                </div>          
+            }
+        </div>
+    </section>
+</main>
