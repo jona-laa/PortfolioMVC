@@ -4,15 +4,10 @@
     ViewData["Title"] = "Delete";
 }
 
-<div id="edit-items_container" class="row">
-</div>
-
 <main>
-    @* <h1>About</h1> *@
-
     <section id="edit-items" class="bg-light section-padding">
         <h2>Delete Skill</h2>
-    
+        <div class="divider"></div>
         <div id="edit-items_container" class="row">
             <div class="skill">
                 <i class="@Model.Icon fa-3x"></i>
@@ -23,6 +18,10 @@
                 </form> 
             </div>
         </div>
-        <a asp-action="Index">Back to List</a>
+        <div class="go-back">
+            <a asp-action="Index">Back to List</a>
+        </div>
     </section>
 </main>
+
+<partial name="_AdminScripts" />

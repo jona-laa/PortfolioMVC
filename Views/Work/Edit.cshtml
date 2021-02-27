@@ -7,6 +7,7 @@
 <main>
     <section id="edit" class="section-padding">
         <h2>Edit Work</h2>
+        <div class="divider"></div>
         <form asp-action="Edit">
             <input type="hidden" asp-for="Id" />
             <div>
@@ -38,7 +39,7 @@
                 <input type="submit" value="Save" class="btn" />
             </div>
         </form>
-        <div>
+        <div class="go-back">
             <a asp-action="Index">Back to List</a>
         </div>
     </section>
@@ -47,3 +48,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<partial name="_AdminScripts" />

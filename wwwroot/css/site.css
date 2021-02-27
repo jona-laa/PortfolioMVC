@@ -1,7 +1,7 @@
 ﻿@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Rajdhani&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap);
 @import url('admin.css');
 
 * {
@@ -409,6 +409,38 @@ p {
   height: 260px;
   width: 260px;
 }
+.post {
+  margin-top: 25px;
+}
+.post .divider {
+  margin: 25px auto;
+}
+.post-heading {
+  font-weight: 500;
+  margin: 10px 0 0 10px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 3.4rem;
+}
+.post-body {
+  padding: 0 10px;
+  font-weight: 400;
+}
+.post-info {
+  text-align: right;
+}
+.post-info span {
+  font-size: 1.2rem;
+}
+.next, .prev {
+  position: fixed;
+  top: 50vh;
+}
+.next {
+  right: 10px;
+}
+.prev {
+  left: 10px;
+}
 @media screen and (max-width: 800px) {
   .avatar-container .avatar {
     max-width: 230px;
@@ -444,6 +476,9 @@ p {
 #skillset .skills-container .skill span {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;
+}
+.skill .edit-items_controls {
+  padding: 0;
 }
 #resume {
   background: linear-gradient(

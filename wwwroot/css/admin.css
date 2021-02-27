@@ -412,12 +412,22 @@ span {
 .skill span {
   font-size: 1.6rem;
 }
+.resume-item span {
+  font-size: 1.4rem;
+}
 #edit-items {
   background: linear-gradient(
       rgba(255, 255, 255, 0.95),
       rgba(255, 255, 255, 0.95)
     ),
     url(../images/resume-bg.jpg) no-repeat center center/cover;
+}
+#edit-items_controls, #edit-items .create-new, .go-back {
+  text-align: center;
+}
+#edit-items_controls, #edit-items .create-new a, .create-new a {
+  font-size: 1.6rem;
+  font-weight: 500;
 }
 #edit-items_container {
   display: flex;

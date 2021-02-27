@@ -5,9 +5,9 @@
 }
 
 <main>
-    @* <h1>Create</h1> *@
     <section id="edit" class="section-padding">
         <h2>Create Course</h2>
+        <div class="divider"></div>
         <form id="edit-form" asp-action="Create">
             <div>
                 <input asp-for="CourseName" placeholder="Course Name" />
@@ -39,13 +39,14 @@
                 <input type="submit" value="Create" id="submit" class="btn" />
             </div>
         </form>
-        <div>
+        <div class="go-back">
             <a asp-action="Index">Back to List</a>
         </div>
     </section>
 </main>
 
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<partial name="_AdminScripts" />

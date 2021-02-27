@@ -6,11 +6,9 @@
 }
 
 <main>
-    @* <h1>About</h1> *@
-
     <section id="edit-items" class="bg-light section-padding">
         <h2>Delete Work</h2>
-
+        <div class="divider"></div>
         <div id="edit-items_container" class="row trio">
             <div class="resume-item">
                 <h4>@Model.Company</h4>
@@ -24,6 +22,10 @@
                 </form>
             </div>          
         </div>
-        <a asp-action="Index">Back to List</a>
+        <div class="go-back">
+            <a asp-action="Index">Back to List</a>
+        </div>
     </section>
 </main>
+
+<partial name="_AdminScripts" />

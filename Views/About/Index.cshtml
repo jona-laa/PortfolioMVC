@@ -3,12 +3,19 @@
 @{
     ViewData["Title"] = "Index";
 }
-<main>
-    @* <h1>About</h1> *@
 
+@section heroContent {
+    <div class="hero-content">
+      <h1 class="title">About</h1>
+      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+    </div>
+}
+
+<main>
     <section id="edit-items" class="bg-light section-padding">
         <h2>About Articles</h2>
-        <p>
+        <div class="divider"></div>
+        <p class="create-new">
             <a asp-action="Create">Create New</a>
         </p>
         <div id="edit-items_container" class="row">
@@ -28,10 +35,12 @@
                 </div>
 
                 <div class="edit-items_controls">
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="edit-control">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="edit-control">Delete</a>
                 </div>
             }
         </div>
     </section>
 </main>
+
+<partial name="_AdminScripts" />

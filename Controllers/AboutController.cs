@@ -31,25 +31,6 @@ namespace PortfolioMVC.Controllers
             return View(await _context.About.ToListAsync());
         }
 
-        // // GET: About/Details/5
-        // [Authorize]
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     var about = await _context.About
-        //         .FirstOrDefaultAsync(m => m.Id == id);
-        //     if (about == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     return View(about);
-        // }
-
         // GET: About/Create
         [Authorize]
         public IActionResult Create()

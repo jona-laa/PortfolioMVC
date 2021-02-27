@@ -1,0 +1,18 @@
+@inject PortfolioMVC.Models.DateFormat Format
+@model PortfolioMVC.Models.BlogPost
+
+<article class="about-container post">
+    <div>
+        <div>
+            <img src="/images/uploads/@(Model.ImageName)" alt="">
+            <h3 class="post-heading">@Model.Title</h3>
+            <div class="post-body">
+                <p>@Html.Raw(Model.Body.Replace("\n", "</p><p>"))</p>
+            </div>
+            <div class="post-info">
+                <span> @Model.Author | @Format.ToReadableDate(Model.Posted)</span>
+            </div>
+        </div>
+    <div class="divider"></div>
+    </div>
+</article>

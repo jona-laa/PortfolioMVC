@@ -1,0 +1,36 @@
+@model IEnumerable<PortfolioMVC.Models.BlogPost>
+@inject PortfolioMVC.Models.DateFormat Format
+
+@{
+    ViewData["Title"] = "Admin - Blog";
+}
+
+@section heroContent {
+    <div class="hero-content">
+      <h1 class="title">Blog</h1>
+      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+    </div>
+}
+
+<main>
+    <section id="edit-items" class="bg-light section-padding">
+        <h2>Blog Posts</h2>
+        <div class="divider"></div>
+        <p class="create-new">
+            <a asp-action="Create">Create New</a>
+        </p>
+        <div id="edit-items_container" class="row">
+            @foreach (var item in Model) 
+            {
+                <partial name="_Post" model="item" />
+
+                <div class="edit-items_controls">
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="edit-control">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="edit-control">Delete</a>
+                </div>   
+            }
+        </div>
+    </section>
+</main>
+
+<partial name="_AdminScripts" />

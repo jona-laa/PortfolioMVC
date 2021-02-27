@@ -1,4 +1,5 @@
-@model PortfolioMVC.Models.About
+@model PortfolioMVC.Models.BlogPost
+@inject PortfolioMVC.Models.DateFormat Format
 
 @{
     ViewData["Title"] = "Delete";
@@ -16,9 +17,9 @@
 
                 <div>
                     <div>
-                        <h3 class="left-align">@Model.Title</h3>
-                        @Html.Raw(Model.Content)
-                        <p>Published: @Model.IsPublished</p>
+                        <h3>@Model.Title</h3>
+                        <p>@Model.Body</p>
+                        <p>Post Date: @Format.ToReadableDate(Model.Posted)</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +29,7 @@
             </form>
         </div>
         <div class="go-back">
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="Admin">Back to List</a>
         </div>
     </section>
 </main>
