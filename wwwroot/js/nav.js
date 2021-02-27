@@ -3,6 +3,8 @@ window.onscroll = () => {
   hideMenu();
   hideToTopBtn();
   alterBgColor(300, 'rgba(0, 0, 0, 0.6)', 'transparent', header);
+  document.querySelectorAll('.next')[0] ? hideOnOffset(500, 'none', document.querySelectorAll('.next')[0]) : null;
+  document.querySelectorAll('.prev')[0] ? hideOnOffset(500, 'none', document.querySelectorAll('.prev')[0]) : null;
   screen.width < 813 ? alterBgColor(300, 'rgba(0, 0, 0, 0.6)', 'transparent', mainMenu) : null;
 };
 

@@ -1,6 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http; 
+
 
 namespace PortfolioMVC.Models
 {
@@ -23,12 +26,20 @@ namespace PortfolioMVC.Models
             set { _key = value; }
         }
 
-        [Required, StringLength(100, MinimumLength = 5, ErrorMessage = "Title must be between 5 and 100 characters long"), DataType(DataType.Text)]
+        [Required, DataType(DataType.Text)]
         public string Title { get; set; }
+
+        [Display(Name = "Image Name"), Column(TypeName = "nvarchar(100)")]
+        public string ImageName { get; set; }
+
+        [Display(Name = "Upload Image"), NotMapped]
+        public IFormFile ImageFile { get; set; }
+
         public string Author { get; set; }
 
-        [Required, MinLength(100, ErrorMessage = "Blog posts must be at least 100 characters long"), Display(Name = "Content"), DataType(DataType.MultilineText)]
+        [Required, Display(Name = "Content"), DataType(DataType.MultilineText)]
         public string Body { get; set; }
+        
         public DateTime Posted { get; set; }
     }
 }

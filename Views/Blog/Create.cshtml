@@ -1,0 +1,42 @@
+@model PortfolioMVC.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Admin - Create Blog Post";
+}
+
+<main>
+    <section id="edit" class="section-padding">
+        <h2>Create About</h2>
+        <div class="divider"></div>
+        <form id="edit-form" asp-action="Create" enctype="multipart/form-data">
+            <div>
+                <input asp-for="Title" class="form-control" placeholder="Title" />
+                <label asp-for="Title" class="control-label"></label>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="ImageFile" accept="image/*" class="form-control" />
+                <label asp-for="ImageFile" class="control-label"></label>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="textarea">
+                <textarea asp-for="Body" class="form-control" placeholder="Blog Text"></textarea>
+                <label asp-for="Body" class="control-label"></label>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form_buttons">
+                <input type="reset" value="Cancel" class="btn">
+                <input type="submit" value="Create" id="submit" class="btn" />
+            </div>
+        </form>
+        <div class="go-back">
+            <a asp-action="Admin">Back to List</a>
+        </div>
+    </section>
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<partial name="_AdminScripts" />

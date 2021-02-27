@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,38 +21,20 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Course
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Courses.ToListAsync());
         }
 
-        // GET: Course/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var course = await _context.Courses
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (course == null)
-            {
-                return NotFound();
-            }
-
-            return View(course);
-        }
-
         // GET: Course/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Course/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CourseName,Institution,DateStart,DateEnd,Description")] Course course)
@@ -66,6 +49,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Course/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,10 +66,9 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Course/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CourseName,Institution,DateStart,DateEnd,Description")] Course course)
         {
             if (id != course.Id)
@@ -117,6 +100,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Course/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,6 +119,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Course/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

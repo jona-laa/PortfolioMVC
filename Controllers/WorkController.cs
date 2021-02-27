@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,40 +21,23 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Work
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Work.ToListAsync());
         }
 
-        // GET: Work/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var work = await _context.Work
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (work == null)
-            {
-                return NotFound();
-            }
-
-            return View(work);
-        }
-
         // GET: Work/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Work/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Company,Title,DateStart,DateEnd,Description")] Work work)
         {
             if (ModelState.IsValid)
@@ -66,6 +50,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Work/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,8 +67,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Work/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Company,Title,DateStart,DateEnd,Description")] Work work)
@@ -117,6 +101,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Work/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -137,6 +122,7 @@ namespace PortfolioMVC.Controllers
         // POST: Work/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var work = await _context.Work.FindAsync(id);

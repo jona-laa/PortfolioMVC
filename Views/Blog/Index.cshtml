@@ -1,0 +1,45 @@
+@model IEnumerable<PortfolioMVC.Models.BlogPost>
+@inject PortfolioMVC.Models.DateFormat Format
+
+@{
+    ViewData["Title"] = "Blog";
+}
+
+@section heroContent {
+    <div class="hero-content">
+      <h1 class="title">Blog</h1>
+      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+    </div>
+}
+
+
+
+<main>
+    <section id="edit-items" class="bg-light section-padding">
+        <h2>Blog Posts</h2>
+        <p class="pager">
+            @if (ViewBag.HasPreviousPage)
+            {
+                <a class="prev" href="@Url.Action("Index", "Blog" , new { page = ViewBag.PreviousPage })">
+                    &lt; Previous
+                </a>
+            }
+
+            @if (ViewBag.HasNextPage)
+            {
+                <a class="next" href="@Url.Action("Index", "Blog" , new { page = ViewBag.NextPage })">
+                    Next &gt;
+                </a>
+            }
+        </p>
+        <div class="divider"></div>
+        <div id="edit-items_container" class="row">
+        @foreach (var post in Model)
+        {
+            <partial name="_Post" model="post"/>
+        }
+        </div>
+    </section>
+</main>
+
+<partial name="_AdminScripts" />

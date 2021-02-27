@@ -4,45 +4,44 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Project</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Url" class="control-label"></label>
-                <input asp-for="Url" class="form-control" />
+<main>
+    <section id="edit" class="section-padding">
+        <h2>Create Project</h2>
+        <div class="divider"></div>
+        <form id="edit-form" asp-action="Create" enctype="multipart/form-data">
+            <div>
+                <input asp-for="Url" placeholder="Url" />
+                <label asp-for="Url"></label>
                 <span asp-validation-for="Url" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+            <div>
+                <input asp-for="Title" placeholder="Title" />
+                <label asp-for="Title"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <textarea asp-for="Description" class="form-control"></textarea>
+            <div class="textarea">
+                <textarea asp-for="Description" placeholder="Description"></textarea>
+                <label asp-for="Description"></label>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" class="form-control" />
+            <div>
+                <input asp-for="ImageFile" />
+                <label asp-for="ImageFile"></label>
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="form_buttons">
+                <input type="reset" value="Cancel" class="btn">
+                <input type="submit" value="Create" id="submit" class="btn" />
             </div>
         </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="go-back">
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </section>
+</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<partial name="_AdminScripts" />

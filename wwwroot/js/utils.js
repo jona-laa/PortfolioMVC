@@ -37,6 +37,21 @@ const alterBgColor = (offset, col1, col2, ...elements) => elements.forEach(eleme
 
 
 
+/* Changes display color of element depending on window.pageYOffset - Used onscroll
+ * @param   {number}    offset     Negative offset on window.screen.height
+ * @param   {string}    value      Display value, e.g 'none' or 'block'
+ * @param   {DOM Eleme} elements   Element/elements to alter
+*/
+const hideOnOffset = (offset, value, element) => {
+  if(window.pageYOffset > offset) {
+    element.style.display = 'block';
+  }
+  else {
+    element.style.display = value;
+  }
+}
+
+
 /* If iOs device or no
   * @returns {boolean}
 */
