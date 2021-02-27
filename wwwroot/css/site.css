@@ -431,12 +431,15 @@ p {
 .post-info span {
   font-size: 1.2rem;
 }
-.next, .prev {
+.next,
+.prev {
   position: fixed;
   top: 50vh;
 }
 .next {
   right: 10px;
+  color: black;
+  text-shadow: none;
 }
 .prev {
   left: 10px;
@@ -445,6 +448,13 @@ p {
   .avatar-container .avatar {
     max-width: 230px;
     max-height: 230px;
+  }
+  .post-body {
+    padding: 0;
+    font-weight: 400;
+  }
+  .post-heading {
+    margin: 10px 0 0 0;
   }
 }
 #skillset h2 {
