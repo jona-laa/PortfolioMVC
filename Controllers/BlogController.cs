@@ -55,9 +55,30 @@ namespace PortfolioMVC.Controllers
 
         // GET: Blog
         [Authorize]
-        public async Task<IActionResult> Admin()
+        public IActionResult Admin(int page = 0)
         {
-            return View(await _context.Posts.OrderByDescending(x => x.Posted).ToListAsync());
+            int pageSize = 2;
+            double totalPosts = _context.Posts.Count();
+            var totalPages = Math.Round(totalPosts / pageSize);
+            var previousPage = page - 1;
+            var nextPage = page + 1;
+
+            ViewBag.PreviousPage = previousPage;
+            ViewBag.HasPreviousPage = previousPage >= 0;
+            ViewBag.NextPage = nextPage;
+            ViewBag.HasNextPage = nextPage < totalPages;
+
+            var posts =
+                _context.Posts
+                    .OrderByDescending(x => x.Posted)
+                    .Skip(pageSize * page)
+                    .Take(pageSize)
+                    .ToArray();
+
+            if(Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView(posts);
+            
+            return View(posts);
         }
 
         // GET: Single Blog Post
