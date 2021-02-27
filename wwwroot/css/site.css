@@ -444,6 +444,12 @@ p {
 .prev {
   left: 10px;
 }
+.prev i {
+  font-size: 30px;
+}
+.next i {
+  font-size: 30px;
+}
 @media screen and (max-width: 800px) {
   .avatar-container .avatar {
     max-width: 230px;

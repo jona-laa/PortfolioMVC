@@ -21,14 +21,14 @@
             @if (ViewBag.HasPreviousPage)
             {
                 <a class="prev" href="@Url.Action("Index", "Blog" , new { page = ViewBag.PreviousPage })">
-                    &lt; Previous
+                    <i class="fas fa-chevron-left" aria-label="Previous Page"></i>
                 </a>
             }
 
             @if (ViewBag.HasNextPage)
             {
                 <a class="next" href="@Url.Action("Index", "Blog" , new { page = ViewBag.NextPage })">
-                    Next &gt;
+                    <i class="fas fa-chevron-right" aria-label="Next Page"></i>
                 </a>
             }
         </p>
