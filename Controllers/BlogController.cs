@@ -13,6 +13,7 @@ using PortfolioMVC.Models;
 
 namespace PortfolioMVC.Controllers
 {
+    [Route("Blog")]
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,12 +27,12 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog
-        [HttpGet]
+        [HttpGet, Route("")]
         public IActionResult Index(int page = 0)
         {
             int pageSize = 2;
             double totalPosts = _context.Posts.Count();
-            var totalPages = Math.Round(totalPosts / pageSize);
+            var totalPages = Math.Ceiling(totalPosts / pageSize);
             var previousPage = page - 1;
             var nextPage = page + 1;
 
@@ -54,12 +55,12 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog
-        [Authorize]
+        [Authorize, Route("Admin")]
         public IActionResult Admin(int page = 0)
         {
-            int pageSize = 2;
+            int pageSize = 3;
             double totalPosts = _context.Posts.Count();
-            var totalPages = Math.Round(totalPosts / pageSize);
+            var totalPages = Math.Ceiling(totalPosts / pageSize);
             var previousPage = page - 1;
             var nextPage = page + 1;
 
@@ -82,22 +83,22 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Single Blog Post
-        [Route("{year:min(2000)}/{month:range(1, 12)}/{key}")]
-        public IActionResult Post(int year, int month, string key)
+        [Route("{key}")]
+        public IActionResult Post(string key)
         {
             var post = _context.Posts.FirstOrDefault(p => p.Key == key);
             return View(post);
         }
 
         // GET: Blog/Create
-        [Authorize]
+        [Authorize, Route("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Blog/Create
-        [HttpPost]
+        [HttpPost, Route("Create")]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,Author,Body,Posted")] BlogPost blogPost)
@@ -127,7 +128,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog/Edit/5
-        [Authorize]
+        [Authorize, Route("Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -144,7 +145,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Blog/Edit/5
-        [HttpPost]
+        [HttpPost, Route("Edit")]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,Author,Body,Posted")] BlogPost blogPost)
@@ -179,7 +180,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog/Delete/5
-        [Authorize]
+        [Authorize, Route("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -198,7 +199,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Blog/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Route("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)

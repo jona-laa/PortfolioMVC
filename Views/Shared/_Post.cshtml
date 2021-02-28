@@ -5,6 +5,7 @@
     <div>
         <div>
             <img src="/images/uploads/@(Model.ImageName)" alt="">
+            @Html.ActionLink(Model.Title, "Post", "Blog", new { key = Model.Key })
             <h3 class="post-heading">@Model.Title</h3>
             <div class="post-body">
                 <p>@Html.Raw(Model.Body.Replace("\n", "</p><p>"))</p>
@@ -16,3 +17,5 @@
     <div class="divider"></div>
     </div>
 </article>
+
+<partial name="_AdminScripts" />

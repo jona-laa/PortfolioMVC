@@ -102,7 +102,6 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 menu,
@@ -421,6 +420,10 @@ p {
   font-family: 'Open Sans', sans-serif;
   line-height: 3.4rem;
 }
+.post-ingress {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
 .post-body {
   padding: 0 10px;
   font-weight: 400;
@@ -431,7 +434,14 @@ p {
 .post-info span {
   font-size: 1.2rem;
 }
-.next,
+.pager {
+  text-align: center;
+}
+.prev i, .next i {
+  font-size: 30px;
+  margin: 0 10px;
+}
+/* .next,
 .prev {
   position: fixed;
   top: 50vh;
@@ -443,13 +453,7 @@ p {
 }
 .prev {
   left: 10px;
-}
-.prev i {
-  font-size: 30px;
-}
-.next i {
-  font-size: 30px;
-}
+} */
 @media screen and (max-width: 800px) {
   .avatar-container .avatar {
     max-width: 230px;

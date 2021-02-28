@@ -12,26 +12,9 @@
     </div>
 }
 
-
-
 <main>
     <section id="edit-items" class="bg-light section-padding">
         <h2>Blog Posts</h2>
-        <p class="pager">
-            @if (ViewBag.HasPreviousPage)
-            {
-                <a class="prev" href="@Url.Action("Index", "Blog" , new { page = ViewBag.PreviousPage })">
-                    <i class="fas fa-chevron-left" aria-label="Previous Page"></i>
-                </a>
-            }
-
-            @if (ViewBag.HasNextPage)
-            {
-                <a class="next" href="@Url.Action("Index", "Blog" , new { page = ViewBag.NextPage })">
-                    <i class="fas fa-chevron-right" aria-label="Next Page"></i>
-                </a>
-            }
-        </p>
         <div class="divider"></div>
         <div id="edit-items_container" class="row">
         @foreach (var post in Model)
@@ -39,6 +22,7 @@
             <partial name="_Post" model="post"/>
         }
         </div>
+        <partial name="_Pager" />
     </section>
 </main>
 
