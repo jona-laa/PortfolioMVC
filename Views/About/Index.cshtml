@@ -7,7 +7,7 @@
 @section heroContent {
     <div class="hero-content">
       <h1 class="title">About</h1>
-      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+      <a href="#edit-items" class="arrow-link" aria-label="Scroll down to main content"><i class="fas fa-chevron-down fa-3x"></i></a>
     </div>
 }
 
@@ -21,14 +21,14 @@
         <div id="edit-items_container" class="row">
             @foreach (var item in Model) {
                 <div class="about-container">
-                    <div class="avatar-container">  
+                    <div class="avatar-container" role="img" aria-label="@item.ImageDescription">  
                         <div class="avatar" style="background: url('/images/uploads/@(item.ImageName)') no-repeat center center/cover"></div>
                     </div>
 
                     <div>
                         <div>
                             <h3>@item.Title</h3>
-                            @Html.Raw(item.Content)
+                            <p>@Html.Raw(item.Content.Replace("\n", "</p><p>"))</p>
                             <p>Published: @item.IsPublished</p>
                         </div>
                     </div>

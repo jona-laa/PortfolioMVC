@@ -8,7 +8,7 @@
 @section heroContent {
     <div class="hero-content">
       <h1 class="title">Work</h1>
-      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+      <a href="#edit-items" class="arrow-link" aria-label="Scroll down to main content"><i class="fas fa-chevron-down fa-3x"></i></a>
     </div>
 }
 
@@ -19,7 +19,7 @@
         <p class="create-new">
             <a asp-action="Create">Create New</a>
         </p>
-        <div id="edit-items_container" class="row trio">
+        <div id="edit-items_container" class="row flex-row trio">
             @foreach (var item in Model) {
                 <div class="resume-item">
                     <h4>@item.Company</h4>

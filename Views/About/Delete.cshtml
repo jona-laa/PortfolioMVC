@@ -17,7 +17,7 @@
                 <div>
                     <div>
                         <h3 class="left-align">@Model.Title</h3>
-                        @Html.Raw(Model.Content)
+                        <p>@Html.Raw(Model.Content.Replace("\n", "</p><p>"))</p>
                         <p>Published: @Model.IsPublished</p>
                     </div>
                 </div>

@@ -8,8 +8,29 @@
 @section heroContent {
     <div class="hero-content">
       <h1 class="title">Blog</h1>
-      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+      <a href="#edit-items" class="arrow-link" aria-label="Scroll down to main content"><i class="fas fa-chevron-down fa-3x"></i></a>
     </div>
+}
+
+@section blogMenu {
+<ul id="menu-main-menu" class="menu">    
+    <li>
+        <a 
+            asp-controller="Home" 
+            asp-action="Index" 
+            class="menu-link">
+            Home
+        </a>
+    </li>
+    <li>
+        <a 
+            asp-controller="Blog" 
+            asp-action="Index"
+            class="menu-link">
+            Blog
+        </a>
+    </li>
+</ul>
 }
 
 <main>

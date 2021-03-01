@@ -150,7 +150,6 @@ main a {
 }
 main a:hover {
   cursor: pointer;
-  opacity: 0.75;
 }
 main a:visited {
   color: #272727;
@@ -438,7 +437,7 @@ span {
   margin: auto;
   max-width: 1200px;
 }
-.row {
+.flex-row {
   flex-direction: row !important;
 }
 .trio {
@@ -526,8 +525,9 @@ span {
 @media screen and (max-width: 812px) {
   #logout-btn {
     display: block;
-    margin-top: 20px;
+    margin: 20px 0;
     position: initial;
+    text-align: right;
   }
 }
 #edit {
@@ -616,6 +616,18 @@ form .btn-top {
 form #submit {
   background-color: #121d23;
   color: #f7f7f7;
+}
+.form-inline {
+  margin: 0 auto;
+}
+.logout-form button {
+  background: transparent;
+  color: #f7f7f7;
+  border: none;
+  box-shadow: none;
+}
+.logout-form button:hover {
+  cursor: pointer;
 }
 .icon-link {
   color: #f7f7f7;

@@ -21,6 +21,9 @@ namespace PortfolioMVC.Models
         [NotMapped, Display(Name = "Upload Image")]
         public IFormFile ImageFile { get; set; }
 
+        [Display(Name = "Image Description"), Required]
+        public string ImageDescription { get; set; }
+
         public bool IsPublished { get; set; }
     }
 } 

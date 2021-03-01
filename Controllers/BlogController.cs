@@ -84,24 +84,17 @@ namespace PortfolioMVC.Controllers
 
         // GET: Single Blog Post
         [Route("{key}")]
-        public IActionResult Post(string key)
-        {
-            var post = _context.Posts.FirstOrDefault(p => p.Key == key);
-            return View(post);
-        }
+        public IActionResult Post(string key) => View(_context.Posts.FirstOrDefault(p => p.Key == key));
 
         // GET: Blog/Create
         [Authorize, Route("Create")]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Blog/Create
         [HttpPost, Route("Create")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,ImageDescription,Author,Body,Posted")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
@@ -148,7 +141,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost, Route("Edit")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,ImageDescription,Author,Body,Posted")] BlogPost blogPost)
         {
             if (id != blogPost.Id)
             {
@@ -159,6 +152,15 @@ namespace PortfolioMVC.Controllers
             {
                 try
                 {
+                    // If New Image Uploaded
+                        // Get imagePath of old image with FileName
+                        
+                        // Delete old image file
+
+                        // Create new fileName with ImageFile name
+                        // set blogPost.ImageName with created name
+                        // Save image to images/uploads
+
                     blogPost.Author = User.Identity.Name;
                     _context.Update(blogPost);
                     await _context.SaveChangesAsync();
@@ -207,10 +209,17 @@ namespace PortfolioMVC.Controllers
             var blogPost = await _context.Posts.FindAsync(id);
 
             // Delete image from wwwroot/images/uploads
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", blogPost.ImageName);
-            if (System.IO.File.Exists(imagePath))
+            try
             {
-                System.IO.File.Delete(imagePath);
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", blogPost.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+            catch
+            {
+                Console.Write("Something went wrong");
             }
 
             _context.Posts.Remove(blogPost);
@@ -218,9 +227,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Admin));
         }
 
-        private bool BlogPostExists(int id)
-        {
-            return _context.Posts.Any(e => e.Id == id);
-        }
+        private bool BlogPostExists(int id) => _context.Posts.Any(e => e.Id == id);
     }
 }

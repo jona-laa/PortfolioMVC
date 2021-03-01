@@ -19,6 +19,11 @@
                 <label asp-for="ImageFile"></label>
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
+            <div>
+                <input asp-for="ImageDescription" class="form-control" placeholder="Image Description" />
+                <label asp-for="ImageDescription" class="control-label"></label>
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
             <div class="textarea">
                 <textarea asp-for="Content" placeholder="About Text"></textarea>
                 <label asp-for="Content"></label>
@@ -33,7 +38,7 @@
                 <input type="submit" value="Create" id="submit" class="btn"> 
             </div>
         </form>
-        <div>
+        <div class="go-back">
             <a asp-action="Index">Back to List</a>
         </div>
     </section>

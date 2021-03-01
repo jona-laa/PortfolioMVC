@@ -19,6 +19,11 @@
                 <label asp-for="ImageFile" class="control-label"></label>
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
+            <div>
+                <input asp-for="ImageDescription" class="form-control" placeholder="Image Description" />
+                <label asp-for="ImageDescription" class="control-label"></label>
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
             <div class="textarea">
                 <textarea asp-for="Body" class="form-control" placeholder="Blog Text"></textarea>
                 <label asp-for="Body" class="control-label"></label>

@@ -20,6 +20,11 @@
                 <input asp-for="ImageName" />
                 <span asp-validation-for="ImageName" class="text-danger"></span>
             </div>
+            <div>
+                <input asp-for="ImageDescription" class="form-control" placeholder="Image Description" />
+                <label asp-for="ImageDescription" class="control-label"></label>
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
             <div class="textarea">
                 <label asp-for="Content"></label>
                 <textarea asp-for="Content"></textarea>

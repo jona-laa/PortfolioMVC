@@ -1,0 +1,28 @@
+@model PortfolioMVC.Models.Account.LoginViewModel
+
+
+<main>
+    <section id="edit" class="section-padding">
+    <h2>Login</h2>
+    <div class="divider"></div>
+    <form role="form" asp-action="Login">
+        <div>
+            <label asp-for="EmailAddress"></label>
+            <input type="email" asp-for="EmailAddress" class="form-control" />
+            <span asp-validation-for="EmailAddress" class="field-validation-error"></span>
+        </div>
+
+        <div>
+            <label asp-for="Password"></label>
+            <input type="password" asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="field-validation-error"></span>
+        </div>
+
+        <div class="form_buttons">
+            <button type="submit" class="btn">Login</button>
+        </div>
+    </form>
+    </section>
+</main>
+
+<partial name="_AdminScripts" />

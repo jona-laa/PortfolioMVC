@@ -26,23 +26,17 @@ namespace PortfolioMVC.Controllers
 
         // GET: About
         [Authorize]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.About.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.About.ToListAsync());
 
         // GET: About/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: About/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageFile,IsPublished")] About about)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageFile,ImageDescription,IsPublished")] About about)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +80,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,IsPublished")] About about)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,ImageDescription,IsPublished")] About about)
         {
             if (id != about.Id)
             {
@@ -155,9 +149,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AboutExists(int id)
-        {
-            return _context.About.Any(e => e.Id == id);
-        }
+        private bool AboutExists(int id) => _context.About.Any(e => e.Id == id);
     }
 }
