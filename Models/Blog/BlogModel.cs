@@ -35,6 +35,12 @@ namespace PortfolioMVC.Models
         [Display(Name = "Upload Image"), NotMapped]
         public IFormFile ImageFile { get; set; }
 
+        [Display(Name = "Image Description"), Required]
+        public string ImageDescription { get; set; }
+
+        [Display(Name = "Image Alt-text"), Required]
+        public string ImageAltText { get; set; }
+
         public string Author { get; set; }
 
         [Required, Display(Name = "Content"), DataType(DataType.MultilineText)]

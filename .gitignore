@@ -366,3 +366,5 @@ FodyWeavers.xsd
 Bootstrap/
 
 Backlog.md
+
+appsettings.json

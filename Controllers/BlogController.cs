@@ -13,6 +13,7 @@ using PortfolioMVC.Models;
 
 namespace PortfolioMVC.Controllers
 {
+    [Route("Blog")]
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -26,12 +27,12 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog
-        [HttpGet]
+        [HttpGet, Route("")]
         public IActionResult Index(int page = 0)
         {
             int pageSize = 2;
             double totalPosts = _context.Posts.Count();
-            var totalPages = Math.Round(totalPosts / pageSize);
+            var totalPages = Math.Ceiling(totalPosts / pageSize);
             var previousPage = page - 1;
             var nextPage = page + 1;
 
@@ -54,32 +55,46 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog
-        [Authorize]
-        public async Task<IActionResult> Admin()
+        [Authorize, Route("Admin")]
+        public IActionResult Admin(int page = 0)
         {
-            return View(await _context.Posts.OrderByDescending(x => x.Posted).ToListAsync());
+            int pageSize = 3;
+            double totalPosts = _context.Posts.Count();
+            var totalPages = Math.Ceiling(totalPosts / pageSize);
+            var previousPage = page - 1;
+            var nextPage = page + 1;
+
+            ViewBag.PreviousPage = previousPage;
+            ViewBag.HasPreviousPage = previousPage >= 0;
+            ViewBag.NextPage = nextPage;
+            ViewBag.HasNextPage = nextPage < totalPages;
+
+            var posts =
+                _context.Posts
+                    .OrderByDescending(x => x.Posted)
+                    .Skip(pageSize * page)
+                    .Take(pageSize)
+                    .ToArray();
+
+            if(Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+                return PartialView(posts);
+            
+            return View(posts);
         }
 
         // GET: Single Blog Post
-        [Route("{year:min(2000)}/{month:range(1, 12)}/{key}")]
-        public IActionResult Post(int year, int month, string key)
-        {
-            var post = _context.Posts.FirstOrDefault(p => p.Key == key);
-            return View(post);
-        }
+        [Route("{key}")]
+        public IActionResult Post(string key) => View(_context.Posts.FirstOrDefault(p => p.Key == key));
 
         // GET: Blog/Create
-        [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        [Authorize, Route("Create")]
+        public IActionResult Create() => View();
 
         // POST: Blog/Create
-        [HttpPost]
+        [HttpPost, Route("Create")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,ImageDescription,ImageAltText,Author,Body,Posted")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +103,7 @@ namespace PortfolioMVC.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(blogPost.ImageFile.FileName);
                 string extension = Path.GetExtension(blogPost.ImageFile.FileName);
                 blogPost.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/", fileName);
+                var path = Path.Combine($"{wwwRootPath}/images/uploads/blog/", fileName);
                 
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -106,7 +121,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog/Edit/5
-        [Authorize]
+        [Authorize, Route("Edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -123,10 +138,10 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Blog/Edit/5
-        [HttpPost]
+        [HttpPost, Route("Edit")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,ImageDescription,ImageAltText,Author,Body,Posted")] BlogPost blogPost)
         {
             if (id != blogPost.Id)
             {
@@ -137,6 +152,15 @@ namespace PortfolioMVC.Controllers
             {
                 try
                 {
+                    // If New Image Uploaded
+                        // Get imagePath of old image with FileName
+                        
+                        // Delete old image file
+
+                        // Create new fileName with ImageFile name
+                        // set blogPost.ImageName with created name
+                        // Save image to images/uploads
+
                     blogPost.Author = User.Identity.Name;
                     _context.Update(blogPost);
                     await _context.SaveChangesAsync();
@@ -158,7 +182,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // GET: Blog/Delete/5
-        [Authorize]
+        [Authorize, Route("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -177,7 +201,7 @@ namespace PortfolioMVC.Controllers
         }
 
         // POST: Blog/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete"), Route("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -185,10 +209,17 @@ namespace PortfolioMVC.Controllers
             var blogPost = await _context.Posts.FindAsync(id);
 
             // Delete image from wwwroot/images/uploads
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", blogPost.ImageName);
-            if (System.IO.File.Exists(imagePath))
+            try
             {
-                System.IO.File.Delete(imagePath);
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads/blog", blogPost.ImageName);
+                if (System.IO.File.Exists(imagePath))
+                {
+                    System.IO.File.Delete(imagePath);
+                }
+            }
+            catch
+            {
+                Console.Write("Something went wrong");
             }
 
             _context.Posts.Remove(blogPost);
@@ -196,9 +227,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Admin));
         }
 
-        private bool BlogPostExists(int id)
-        {
-            return _context.Posts.Any(e => e.Id == id);
-        }
+        private bool BlogPostExists(int id) => _context.Posts.Any(e => e.Id == id);
     }
 }

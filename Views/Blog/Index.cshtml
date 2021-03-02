@@ -2,36 +2,40 @@
 @inject PortfolioMVC.Models.DateFormat Format
 
 @{
-    ViewData["Title"] = "Blog";
+    ViewData["Title"] = "Blog - Admin";
 }
 
 @section heroContent {
     <div class="hero-content">
       <h1 class="title">Blog</h1>
-      <a href="#edit-items" class="arrow-link"><i class="fas fa-chevron-down fa-3x"></i></a>
+      <a href="#edit-items" class="arrow-link" aria-label="Scroll down to main content"><i class="fas fa-chevron-down fa-3x"></i></a>
     </div>
 }
 
-
+@section blogMenu {
+<ul id="menu-main-menu" class="menu">    
+    <li>
+        <a 
+            asp-controller="Home" 
+            asp-action="Index" 
+            class="menu-link">
+            Home
+        </a>
+    </li>
+    <li>
+        <a 
+            asp-controller="Blog" 
+            asp-action="Index"
+            class="menu-link">
+            Blog
+        </a>
+    </li>
+</ul>
+}
 
 <main>
     <section id="edit-items" class="bg-light section-padding">
         <h2>Blog Posts</h2>
-        <p class="pager">
-            @if (ViewBag.HasPreviousPage)
-            {
-                <a class="prev" href="@Url.Action("Index", "Blog" , new { page = ViewBag.PreviousPage })">
-                    &lt; Previous
-                </a>
-            }
-
-            @if (ViewBag.HasNextPage)
-            {
-                <a class="next" href="@Url.Action("Index", "Blog" , new { page = ViewBag.NextPage })">
-                    Next &gt;
-                </a>
-            }
-        </p>
         <div class="divider"></div>
         <div id="edit-items_container" class="row">
         @foreach (var post in Model)
@@ -39,6 +43,7 @@
             <partial name="_Post" model="post"/>
         }
         </div>
+        <partial name="_Pager" />
     </section>
 </main>
 

@@ -1,0 +1,40 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>  
+@{  
+    ViewData["Title"] = "Role - Admin";  
+}  
+
+<main>
+    <section id="edit-items" class="bg-light section-padding">
+        <h2>Roles</h2>
+        <div class="divider"></div>
+        <p class="create-new">
+            <a asp-action="Create">Create</a>  
+        </p>
+        <table class="table table-striped table-bordered">  
+            <thead>  
+                <tr>  
+                    <td>Name</td>  
+                </tr>  
+            </thead>  
+            <tbody>  
+                @foreach (var role in Model)  
+                {  
+                    <tr>  
+                        <td>@role.Name</td>  
+                    </tr>  
+                }  
+            </tbody>  
+        </table>
+        <div class="go-back">
+            <a 
+                class="menu-link" 
+                asp-area="Identity" 
+                asp-page="/Account/Manage/Index" 
+                title="Manage">
+                Back to Profile
+            </a>
+        </div>
+    </section>
+</main>
+
+<partial name="_AdminScripts" />

@@ -1,7 +1,5 @@
 // DOM element selectors
-const header = document.querySelector('.header-content');
 const toTopBtn = document.querySelector('#goTop');
-const mainMenu = document.querySelector('#menu-main-menu');
 
 
 
@@ -50,12 +48,6 @@ const hideOnOffset = (offset, value, element) => {
     element.style.display = value;
   }
 }
-
-
-/* If iOs device or no
-  * @returns {boolean}
-*/
-const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
 
 

@@ -3,14 +3,16 @@
 
 @foreach (var project in Model)
 {
-    <div class="portfolio-item" style="background: url('/images/uploads/@(project.ImageName)') no-repeat center center/cover">
-        <div class="portfolio-item_overlay">
-        <div class="portfolio-item_content">
-            <h3><a href="@project.Url" target="_blank">@project.Title</a></h3>
-            <p>@project.Description</p>
-        </div>
-        </div>
-    </div>   
+    <a href="@project.Url" class="portfolio-item_link" target="_blank">
+        <div class="portfolio-item" style="background: url('/images/uploads/portfolio/@(project.ImageName)') no-repeat center center/cover" role="img" aria-label="@project.ImageDescription">
+            <div class="portfolio-item_overlay">
+                <div class="portfolio-item_content">
+                    <h3>@project.Title</h3>
+                    <p>@project.Description</p>
+                </div>
+            </div>
+        </div>   
+    </a>
 }
 
 

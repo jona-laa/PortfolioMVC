@@ -22,17 +22,11 @@ namespace PortfolioMVC.Controllers
 
         // GET: Course
         [Authorize]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Courses.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Courses.ToListAsync());
 
         // GET: Course/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() =>  View();
 
         // POST: Course/Create
         [HttpPost]
@@ -130,9 +124,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(int id)
-        {
-            return _context.Courses.Any(e => e.Id == id);
-        }
+        private bool CourseExists(int id) => _context.Courses.Any(e => e.Id == id);
     }
 }

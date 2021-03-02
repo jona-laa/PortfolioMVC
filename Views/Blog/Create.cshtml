@@ -1,26 +1,36 @@
 @model PortfolioMVC.Models.BlogPost
 
 @{
-    ViewData["Title"] = "Admin - Create Blog Post";
+    ViewData["Title"] = "Blog - Create";
 }
 
 <main>
     <section id="edit" class="section-padding">
-        <h2>Create About</h2>
+        <h2>Create Blog</h2>
         <div class="divider"></div>
         <form id="edit-form" asp-action="Create" enctype="multipart/form-data">
             <div>
-                <input asp-for="Title" class="form-control" placeholder="Title" />
+                <input asp-for="Title" placeholder="Title" />
                 <label asp-for="Title" class="control-label"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div>
-                <input asp-for="ImageFile" accept="image/*" class="form-control" />
+                <input asp-for="ImageFile" accept="image/*" />
                 <label asp-for="ImageFile" class="control-label"></label>
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
+            <div>
+                <input asp-for="ImageDescription" placeholder="Image Figcaption" />
+                <label asp-for="ImageDescription" class="control-label"></label>
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="ImageAltText" placeholder="Image Alt Text" />
+                <label asp-for="ImageAltText" class="control-label"></label>
+                <span asp-validation-for="ImageAltText" class="text-danger"></span>
+            </div>
             <div class="textarea">
-                <textarea asp-for="Body" class="form-control" placeholder="Blog Text"></textarea>
+                <textarea asp-for="Body" placeholder="Blog Text"></textarea>
                 <label asp-for="Body" class="control-label"></label>
                 <span asp-validation-for="Body" class="text-danger"></span>
             </div>

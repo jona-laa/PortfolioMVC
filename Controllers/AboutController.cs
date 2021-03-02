@@ -26,23 +26,17 @@ namespace PortfolioMVC.Controllers
 
         // GET: About
         [Authorize]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.About.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.About.ToListAsync());
 
         // GET: About/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: About/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageFile,IsPublished")] About about)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,ImageFile,ImageDescription,IsPublished")] About about)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +45,7 @@ namespace PortfolioMVC.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(about.ImageFile.FileName);
                 string extension = Path.GetExtension(about.ImageFile.FileName);
                 about.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/", fileName);
+                var path = Path.Combine($"{wwwRootPath}/images/uploads/about/", fileName);
                 
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -86,7 +80,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,IsPublished")] About about)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,ImageName,ImageDescription,IsPublished")] About about)
         {
             if (id != about.Id)
             {
@@ -144,7 +138,7 @@ namespace PortfolioMVC.Controllers
             var about = await _context.About.FindAsync(id);
 
             // Delete image from wwwroot/images/uploads
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", about.ImageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads/about", about.ImageName);
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);
@@ -155,9 +149,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AboutExists(int id)
-        {
-            return _context.About.Any(e => e.Id == id);
-        }
+        private bool AboutExists(int id) => _context.About.Any(e => e.Id == id);
     }
 }

@@ -1,7 +1,7 @@
 @model PortfolioMVC.Models.About
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "About - Edit";
 }
 
 <main>
@@ -10,7 +10,7 @@
         <div class="divider"></div>
         <form asp-action="Edit">
             <input type="hidden" asp-for="Id" />
-            <div>
+            <div class="textarea">
                 <input asp-for="Title" />
                 <label asp-for="Title"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
@@ -19,6 +19,11 @@
                 <label asp-for="ImageName"></label>
                 <input asp-for="ImageName" />
                 <span asp-validation-for="ImageName" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="ImageDescription" class="form-control" placeholder="Image Description" />
+                <label asp-for="ImageDescription" class="control-label"></label>
+                <span asp-validation-for="ImageDescription" class="text-danger"></span>
             </div>
             <div class="textarea">
                 <label asp-for="Content"></label>

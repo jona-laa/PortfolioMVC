@@ -22,17 +22,11 @@ namespace PortfolioMVC.Controllers
 
         // GET: Work
         [Authorize]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Work.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Work.ToListAsync());
 
         // GET: Work/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Work/Create
         [HttpPost]
@@ -131,9 +125,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool WorkExists(int id)
-        {
-            return _context.Work.Any(e => e.Id == id);
-        }
+        private bool WorkExists(int id) => _context.Work.Any(e => e.Id == id);
     }
 }

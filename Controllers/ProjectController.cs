@@ -27,23 +27,17 @@ namespace PortfolioMVC.Controllers
 
         // GET: Project
         [Authorize]
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Projects.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Projects.ToListAsync());
 
         // GET: Project/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Project/Create
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Url,Title,Description,ImageFile")] Project project)
+        public async Task<IActionResult> Create([Bind("Id,Url,Title,Description,ImageFile,ImageDescription")] Project project)
         {
             if (ModelState.IsValid)
             {
@@ -52,7 +46,7 @@ namespace PortfolioMVC.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(project.ImageFile.FileName);
                 string extension = Path.GetExtension(project.ImageFile.FileName);
                 project.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/", fileName);
+                var path = Path.Combine($"{wwwRootPath}/images/uploads/portfolio/", fileName);
                 
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -87,7 +81,7 @@ namespace PortfolioMVC.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Url,Title,Description,ImageName")] Project project)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Url,Title,Description,ImageName,ImageDescription")] Project project)
         {
             if (id != project.Id)
             {
@@ -145,7 +139,7 @@ namespace PortfolioMVC.Controllers
             var project = await _context.Projects.FindAsync(id);
 
             // Delete image from wwwroot/images/uploads
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", project.ImageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads/portfolio", project.ImageName);
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);
@@ -156,9 +150,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProjectExists(int id)
-        {
-            return _context.Projects.Any(e => e.Id == id);
-        }
+        private bool ProjectExists(int id) => _context.Projects.Any(e => e.Id == id);
     }
 }

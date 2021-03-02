@@ -1,0 +1,27 @@
+@page
+@model EmailModel
+@{
+    ViewData["Title"] = "Manage Email";
+    ViewData["ActivePage"] = ManageNavPages.Email;
+}
+
+<main>
+    <section id="edit" class="section-padding">
+    <h2>Email</h2>
+    <div class="divider"></div>
+        <form id="email-form" method="post">
+            <div class="textarea">
+                <input asp-for="Input.NewEmail" class="form-control" placeholder="Email" />
+                <label asp-for="Input.NewEmail"></label>
+                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+            </div>
+            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="btn btn-primary">Change email</button>
+        </form>
+    </section>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<partial name="_AdminScripts" />

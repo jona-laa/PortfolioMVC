@@ -17,5 +17,8 @@ namespace Models.Portfolio.ViewModels
 
         [Required(ErrorMessage = "Choose an image")]
         public IFormFile Image { get; set; }
+
+        [Display(Name = "Image Description"), Required]
+        public string ImageDescription { get; set; }
     }
 }

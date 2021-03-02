@@ -1,0 +1,53 @@
+@page  
+@model RegisterModel  
+@{  
+    ViewData["Title"] = "Register";  
+    var roles = (List<IdentityRole>)ViewData["roles"];  
+}  
+  
+  
+<main>
+    <section id="edit" class="section-padding">
+    <h2>Register</h2>
+    <div class="divider"></div>
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">  
+            <div>  
+                <input asp-for="Input.Email" class="form-control" placeholder="E-Mail" />  
+                <label asp-for="Input.Email"></label>  
+                <span asp-validation-for="Input.Email" class="text-danger"></span>  
+            </div>  
+            <div>  
+                <input asp-for="Input.Password" class="form-control" placeholder="Password" />  
+                <label asp-for="Input.Password"></label>  
+                <span asp-validation-for="Input.Password" class="text-danger"></span>  
+            </div>  
+            <div>  
+                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm Password" />  
+                <label asp-for="Input.ConfirmPassword"></label>  
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>  
+            </div>  
+            <div>  
+                <select asp-for="Input.Name" class="form-control" asp-items='new SelectList(roles,"Id","Name")'>  
+                </select>  
+                <label asp-for="Input.Name"></label>  
+                <span asp-validation-for="Input.Name" class="text-danger"></span>  
+            </div>  
+            <button type="submit" class="btn btn-primary">Register</button>  
+        </form>  
+        <div class="go-back">
+            <a 
+                class="menu-link" 
+                asp-area="Identity" 
+                asp-page="/Account/Manage/Index" 
+                title="Manage">
+                Back to Profile
+            </a>
+        </div>
+    </section>  
+</main>  
+  
+@section Scripts {  
+    <partial name="_ValidationScriptsPartial" />  
+}  
+
+<partial name="_AdminScripts" />

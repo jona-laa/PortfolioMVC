@@ -1,7 +1,7 @@
 @model PortfolioMVC.Models.About
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "About - Delete";
 }
 
 <main>
@@ -11,13 +11,13 @@
         <div id="edit-items_container" class="row">
             <div class="about-container">
                 <div class="avatar-container">  
-                    <div class="avatar" style="background: url('/images/uploads/@(Model.ImageName)') no-repeat center center/cover"></div>
+                    <div class="avatar" style="background: url('/images/uploads/about/@(Model.ImageName)') no-repeat center center/cover"></div>
                 </div>
 
                 <div>
                     <div>
                         <h3 class="left-align">@Model.Title</h3>
-                        @Html.Raw(Model.Content)
+                        <p>@Html.Raw(Model.Content.Replace("\n", "</p><p>"))</p>
                         <p>Published: @Model.IsPublished</p>
                     </div>
                 </div>

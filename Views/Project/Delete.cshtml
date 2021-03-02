@@ -1,7 +1,7 @@
 @model PortfolioMVC.Models.Project
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Project - Delete";
 }
 
 <main>
@@ -10,7 +10,7 @@
         <div class="divider"></div>
         <div id="edit-items_container" class="row trio">
             <div class="portfolio-item">
-                <img src="/images/uploads/@(Model.ImageName)" asp-append-version="true" alt="">
+                <img src="/images/uploads/portfolio/@(Model.ImageName)" asp-append-version="true" alt="">
                 <h3>@Model.Title</h3>
                 <a href="@Model.Url" target="_blank">@Model.Url</a>
                 <p>@Model.Description</p>

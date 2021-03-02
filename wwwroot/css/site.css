@@ -102,7 +102,6 @@ aside,
 details,
 figcaption,
 figure,
-footer,
 header,
 hgroup,
 menu,
@@ -421,6 +420,13 @@ p {
   font-family: 'Open Sans', sans-serif;
   line-height: 3.4rem;
 }
+.post-heading-link {
+  text-decoration: none !important;
+}
+.post-ingress {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
 .post-body {
   padding: 0 10px;
   font-weight: 400;
@@ -431,18 +437,26 @@ p {
 .post-info span {
   font-size: 1.2rem;
 }
-.next,
-.prev {
-  position: fixed;
-  top: 50vh;
+.post figcaption {
+  font-size: 1.2rem;
+  position: relative;
+  bottom: 24px;
+  background:rgba(255, 255, 255, 1);
+  display: inline-block;
+  padding: 0 5px;
 }
-.next {
-  right: 10px;
-  color: black;
-  text-shadow: none;
+.pager {
+  text-align: center;
 }
-.prev {
-  left: 10px;
+.prev i,
+.next i {
+  font-size: 30px;
+  margin: 0 10px;
+}
+@media screen and (max-width: 450px) {
+  .post-info {
+    text-align: center;
+  }
 }
 @media screen and (max-width: 800px) {
   .avatar-container .avatar {
@@ -517,14 +531,15 @@ p {
   position: relative;
   width: 360px;
 }
-.portfolio-container .portfolio-item:hover > div {
-  display: block;
+@media screen and (max-width: 400px) {
+  .portfolio-container .portfolio-item {
+    width: 300px;
+  }
 }
-.portfolio-container .portfolio-item:active > div {
-  display: block;
-}
-.portfolio-container .portfolio-item:focus > div {
-  display: block;
+@media screen and (max-width: 340px) {
+  .portfolio-container .portfolio-item {
+    width: 290px;
+  }
 }
 .portfolio-container .portfolio-item .portfolio-item_overlay {
   display: none;
@@ -534,6 +549,7 @@ p {
   padding: 0;
   position: absolute;
   width: 100%;
+  z-index: 0;
 }
 .portfolio-container
   .portfolio-item
@@ -553,14 +569,14 @@ p {
   h3 {
   line-height: 3rem;
   letter-spacing: 1px;
+  color: #fff;
 }
 .portfolio-container
   .portfolio-item
   .portfolio-item_overlay
   .portfolio-item_content
-  h3
-  a {
-  color: #f7f7f7;
+  h3 {
+  color: #fff;
   font-size: 2.8rem;
   text-transform: uppercase;
 }
@@ -570,6 +586,8 @@ p {
   .portfolio-item_content
   p {
   line-height: 2rem;
+  color: #fff;
+  z-index: 10;
 }
 .btn,
 .btn-top {

@@ -155,11 +155,9 @@ namespace PortfolioMVC.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderDisplayName")
@@ -197,11 +195,9 @@ namespace PortfolioMVC.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Value")
@@ -219,6 +215,10 @@ namespace PortfolioMVC.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageDescription")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -247,6 +247,14 @@ namespace PortfolioMVC.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Body")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageAltText")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageDescription")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -304,6 +312,10 @@ namespace PortfolioMVC.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ImageDescription")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

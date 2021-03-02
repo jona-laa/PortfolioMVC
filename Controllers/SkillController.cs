@@ -22,17 +22,11 @@ namespace PortfolioMVC.Controllers
 
         // GET: Skill
         [Authorize]        
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Skills.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Skills.ToListAsync());
 
         // GET: Skill/Create
         [Authorize]
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Skill/Create
         [HttpPost]
@@ -131,9 +125,6 @@ namespace PortfolioMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SkillExists(int id)
-        {
-            return _context.Skills.Any(e => e.Id == id);
-        }
+        private bool SkillExists(int id) => _context.Skills.Any(e => e.Id == id);
     }
 }

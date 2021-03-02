@@ -150,7 +150,6 @@ main a {
 }
 main a:hover {
   cursor: pointer;
-  opacity: 0.75;
 }
 main a:visited {
   color: #272727;
@@ -422,10 +421,14 @@ span {
     ),
     url(../images/resume-bg.jpg) no-repeat center center/cover;
 }
-#edit-items_controls, #edit-items .create-new, .go-back {
+#edit-items_controls,
+#edit-items .create-new,
+.go-back {
   text-align: center;
 }
-#edit-items_controls, #edit-items .create-new a, .create-new a {
+#edit-items_controls,
+#edit-items .create-new a,
+.create-new a {
   font-size: 1.6rem;
   font-weight: 500;
 }
@@ -438,7 +441,7 @@ span {
   margin: auto;
   max-width: 1200px;
 }
-.row {
+.flex-row {
   flex-direction: row !important;
 }
 .trio {
@@ -526,8 +529,9 @@ span {
 @media screen and (max-width: 812px) {
   #logout-btn {
     display: block;
-    margin-top: 20px;
+    margin: 20px 0;
     position: initial;
+    text-align: right;
   }
 }
 #edit {
@@ -617,6 +621,46 @@ form #submit {
   background-color: #121d23;
   color: #f7f7f7;
 }
+.form-inline {
+  margin: 0 auto;
+}
+.logout-form button {
+  background: transparent;
+  color: #f7f7f7;
+  border: none;
+  box-shadow: none;
+}
+.logout-form button:hover {
+  cursor: pointer;
+}
+.table {
+  margin: 0 auto;
+}
+.table thead td,
+.table tbody td {
+  font-size: 1.6rem;
+}
+.table thead td {
+  font-weight: 600;
+}
+.manage-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #272727;
+}
+@media screen and (max-width: 600px) {
+  .manage-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+  }
+}
+.manage-nav li a {
+  color: #f7f7f7;
+  font-size: 1.6rem;
+}
 .icon-link {
   color: #f7f7f7;
   font-size: 1.8rem;
@@ -647,4 +691,11 @@ footer small {
 }
 .section-padding {
   padding: 50px 20px;
+}
+.centered {
+  text-align: center;
+}
+
+[accept^=image] {
+  padding: 10px;
 }
