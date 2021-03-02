@@ -61,36 +61,36 @@ namespace ExploreCalifornia.Controllers
             return Redirect(returnUrl);
         }
 
-        public IActionResult Register()
-        {
-            return View(new RegisterViewModel());
-        }
+        // public IActionResult Register()
+        // {
+        //     return View(new RegisterViewModel());
+        // }
 
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel registration)
-        {
-            if (!ModelState.IsValid)
-                return View(registration);
+        // [HttpPost]
+        // public async Task<IActionResult> Register(RegisterViewModel registration)
+        // {
+        //     if (!ModelState.IsValid)
+        //         return View(registration);
 
-            var newUser = new IdentityUser
-            {
-                Email = registration.EmailAddress,
-                UserName = registration.EmailAddress,
-            };
+        //     var newUser = new IdentityUser
+        //     {
+        //         Email = registration.EmailAddress,
+        //         UserName = registration.EmailAddress,
+        //     };
 
-            var result = await _userManager.CreateAsync(newUser, registration.Password);
+        //     var result = await _userManager.CreateAsync(newUser, registration.Password);
 
-            if (!result.Succeeded)
-            {
-                foreach (var error in result.Errors.Select(x => x.Description))
-                {
-                    ModelState.AddModelError("", error);
-                }
+        //     if (!result.Succeeded)
+        //     {
+        //         foreach (var error in result.Errors.Select(x => x.Description))
+        //         {
+        //             ModelState.AddModelError("", error);
+        //         }
 
-                return View();
-            }
+        //         return View();
+        //     }
 
-            return RedirectToAction("Login");
-        }
+        //     return RedirectToAction("Login");
+        // }
     }
 }

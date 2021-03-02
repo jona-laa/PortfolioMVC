@@ -38,7 +38,43 @@ namespace PortfolioMVC
             services.AddControllersWithViews();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        // private RoleManager<IdentityRole> _roleManager;
+        // private UserManager<IdentityUser> _userManager;
+
+        // private async Task createAdminWithRole(IServiceProvider serviceProvider)
+        // {
+        //     _roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        //     _userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
+
+        //     var roleExist = await _roleManager.RoleExistsAsync("Admin");
+        //     var userExist = await _userManager.FindByEmailAsync("admin@portfolio.com");
+
+        //     if (!roleExist || userExist == null)
+        //     {
+        //         if(!roleExist)
+        //         {
+        //             var role = new IdentityRole();
+        //             role.Name = "Admin";
+        //             await _roleManager.CreateAsync(role);
+        //         }
+
+        //         if(userExist == null)
+        //         {
+        //             var user = new IdentityUser();
+        //             user.UserName = "admin@portfolio.com";
+
+        //             string userPass = "k1ll4kaz0O_";
+
+        //             IdentityResult checkUser = await _userManager.CreateAsync(user, userPass);
+        //             if(checkUser.Succeeded)
+        //             {
+        //                 var result = await _userManager.AddToRoleAsync(user, "Admin");
+        //             }
+        //         }
+        //     }
+        // }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -65,6 +101,8 @@ namespace PortfolioMVC
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            // createAdminWithRole(serviceProvider).Wait();
         }
     }
 }

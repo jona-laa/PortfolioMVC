@@ -50,12 +50,6 @@ const hideOnOffset = (offset, value, element) => {
 }
 
 
-// /* If iOs device or no
-//   * @returns {boolean}
-// */
-// const isIos = () => /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-
-
 
 //Smooth scrolling
 $('#menu-main-menu a, .btn-top, .arrow-link').on('click', function (e) {
