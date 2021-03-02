@@ -421,10 +421,14 @@ span {
     ),
     url(../images/resume-bg.jpg) no-repeat center center/cover;
 }
-#edit-items_controls, #edit-items .create-new, .go-back {
+#edit-items_controls,
+#edit-items .create-new,
+.go-back {
   text-align: center;
 }
-#edit-items_controls, #edit-items .create-new a, .create-new a {
+#edit-items_controls,
+#edit-items .create-new a,
+.create-new a {
   font-size: 1.6rem;
   font-weight: 500;
 }
@@ -628,6 +632,34 @@ form #submit {
 }
 .logout-form button:hover {
   cursor: pointer;
+}
+.table {
+  margin: 0 auto;
+}
+.table thead td,
+.table tbody td {
+  font-size: 1.6rem;
+}
+.table thead td {
+  font-weight: 600;
+}
+.manage-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #272727;
+}
+@media screen and (max-width: 600px) {
+  .manage-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+  }
+}
+.manage-nav li a {
+  color: #f7f7f7;
+  font-size: 1.6rem;
 }
 .icon-link {
   color: #f7f7f7;
