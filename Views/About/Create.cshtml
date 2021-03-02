@@ -9,7 +9,7 @@
         <h2>Create About</h2>
         <div class="divider"></div>
         <form id="edit-form" asp-action="Create" enctype="multipart/form-data">
-            <div>
+            <div class="textarea">
                 <input asp-for="Title" placeholder="Heading" />
                 <label asp-for="Title"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>

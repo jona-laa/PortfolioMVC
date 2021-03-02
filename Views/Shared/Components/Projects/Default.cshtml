@@ -4,7 +4,7 @@
 @foreach (var project in Model)
 {
     <a href="@project.Url" class="portfolio-item_link" target="_blank">
-        <div class="portfolio-item" style="background: url('/images/uploads/@(project.ImageName)') no-repeat center center/cover" role="img" aria-label="@project.ImageDescription">
+        <div class="portfolio-item" style="background: url('/images/uploads/portfolio/@(project.ImageName)') no-repeat center center/cover" role="img" aria-label="@project.ImageDescription">
             <div class="portfolio-item_overlay">
                 <div class="portfolio-item_content">
                     <h3>@project.Title</h3>

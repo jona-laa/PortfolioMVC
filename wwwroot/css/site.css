@@ -437,6 +437,14 @@ p {
 .post-info span {
   font-size: 1.2rem;
 }
+.post figcaption {
+  font-size: 1.2rem;
+  position: relative;
+  bottom: 24px;
+  background:rgba(255, 255, 255, 0.9);
+  display: inline-block;
+  padding: 0 5px;
+}
 .pager {
   text-align: center;
 }

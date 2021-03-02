@@ -45,7 +45,7 @@ namespace PortfolioMVC.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(about.ImageFile.FileName);
                 string extension = Path.GetExtension(about.ImageFile.FileName);
                 about.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/", fileName);
+                var path = Path.Combine($"{wwwRootPath}/images/uploads/about/", fileName);
                 
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -138,7 +138,7 @@ namespace PortfolioMVC.Controllers
             var about = await _context.About.FindAsync(id);
 
             // Delete image from wwwroot/images/uploads
-            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", about.ImageName);
+            var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads/about", about.ImageName);
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);

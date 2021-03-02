@@ -22,7 +22,7 @@
             @foreach (var item in Model) 
             {
             <div class="portfolio-item">
-                <img src="/images/uploads/@(item.ImageName)" asp-append-version="true" alt="@item.ImageDescription">
+                <img src="/images/uploads/portfolio/@(item.ImageName)" asp-append-version="true" alt="@item.ImageDescription">
                 <h3>@item.Title</h3>
                 <a href="@item.Url" target="_blank">@item.Url</a>
                 <p>@item.Description</p>

@@ -103,7 +103,7 @@ namespace PortfolioMVC.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(blogPost.ImageFile.FileName);
                 string extension = Path.GetExtension(blogPost.ImageFile.FileName);
                 blogPost.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/", fileName);
+                var path = Path.Combine($"{wwwRootPath}/images/uploads/blog/", fileName);
                 
                 using(var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -211,7 +211,7 @@ namespace PortfolioMVC.Controllers
             // Delete image from wwwroot/images/uploads
             try
             {
-                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads", blogPost.ImageName);
+                var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images/uploads/blog", blogPost.ImageName);
                 if (System.IO.File.Exists(imagePath))
                 {
                     System.IO.File.Delete(imagePath);

@@ -692,3 +692,10 @@ footer small {
 .section-padding {
   padding: 50px 20px;
 }
+.centered {
+  text-align: center;
+}
+
+[accept^=image] {
+  padding: 10px;
+}
