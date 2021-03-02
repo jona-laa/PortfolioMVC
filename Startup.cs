@@ -33,9 +33,18 @@ namespace PortfolioMVC
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+            .AddDefaultUI() 
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            // services.AddAuthorization(options => {  
+            //     options.AddPolicy("readpolicy",  
+            //         builder => builder.RequireRole("Admin", "Manager", "User"));  
+            //     options.AddPolicy("writepolicy",  
+            //         builder => builder.RequireRole("Admin", "Manager"));  
+            // }); 
         }
 
         // private RoleManager<IdentityRole> _roleManager;
@@ -101,6 +110,8 @@ namespace PortfolioMVC
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            // hhrhrhr
 
             // createAdminWithRole(serviceProvider).Wait();
         }

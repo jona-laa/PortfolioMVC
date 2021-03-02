@@ -1,3 +1,9 @@
+@model PortfolioMVC.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Blog - " + @Model.Title;
+}
+
 <main>
     <partial name="_Post" />
 </main>
