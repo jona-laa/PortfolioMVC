@@ -94,7 +94,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost, Route("Create")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,ImageDescription,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,ImageDescription,ImageAltText,Author,Body,Posted")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
@@ -141,7 +141,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost, Route("Edit")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,ImageDescription,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Key,Title,ImageName,ImageDescription,ImageAltText,Author,Body,Posted")] BlogPost blogPost)
         {
             if (id != blogPost.Id)
             {

@@ -5,7 +5,7 @@
     <div>
         <div>
             <figure class="post-figure">
-                <img src="/images/uploads/blog/@(Model.ImageName)" alt="@Model.ImageDescription">
+                <img src="/images/uploads/blog/@(Model.ImageName)" alt="@Model.ImageAltText">
                 <figcaption>@Model.ImageDescription</figcaption>
             </figure>
             <a href="@Url.Action("Post", "Blog", new { key = Model.Key })" class="post-heading-link">

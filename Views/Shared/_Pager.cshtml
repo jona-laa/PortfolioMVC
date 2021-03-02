@@ -1,15 +1,37 @@
-<p class="pager">
-@if (ViewBag.HasPreviousPage)
-{
-    <a class="prev" href="@Url.Action("Admin", "Blog" , new { page = ViewBag.PreviousPage })">
-        <i class="fas fa-chevron-left" aria-label="Previous Page"></i>
-    </a>
-}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
 
-@if (ViewBag.HasNextPage)
+<p class="pager">
+@if (SignInManager.IsSignedIn(User))
 {
-    <a class="next" href="@Url.Action("Admin", "Blog" , new { page = ViewBag.NextPage })">
-        <i class="fas fa-chevron-right" aria-label="Next Page"></i>
-    </a>
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="prev" href="@Url.Action("Admin", "Blog" , new { page = ViewBag.PreviousPage })">
+            <i class="fas fa-chevron-left" aria-label="Previous Page"></i>
+        </a>
+    }
+
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="@Url.Action("Admin", "Blog" , new { page = ViewBag.NextPage })">
+            <i class="fas fa-chevron-right" aria-label="Next Page"></i>
+        </a>
+    }
+}
+else
+{
+    @if (ViewBag.HasPreviousPage)
+    {
+        <a class="prev" href="@Url.Action("Index", "Blog" , new { page = ViewBag.PreviousPage })">
+            <i class="fas fa-chevron-left" aria-label="Previous Page"></i>
+        </a>
+    }
+
+    @if (ViewBag.HasNextPage)
+    {
+        <a class="next" href="@Url.Action("Index", "Blog" , new { page = ViewBag.NextPage })">
+            <i class="fas fa-chevron-right" aria-label="Next Page"></i>
+        </a>
+    }
 }
 </p>

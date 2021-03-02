@@ -9,7 +9,7 @@
         <h2>Create Blog</h2>
         <div class="divider"></div>
         <form id="edit-form" asp-action="Create" enctype="multipart/form-data">
-            <div class="textarea">
+            <div>
                 <input asp-for="Title" placeholder="Title" />
                 <label asp-for="Title" class="control-label"></label>
                 <span asp-validation-for="Title" class="text-danger"></span>
@@ -20,9 +20,14 @@
                 <span asp-validation-for="ImageFile" class="text-danger"></span>
             </div>
             <div>
-                <input asp-for="ImageDescription" placeholder="Image Description" />
+                <input asp-for="ImageDescription" placeholder="Image Figcaption" />
                 <label asp-for="ImageDescription" class="control-label"></label>
                 <span asp-validation-for="ImageDescription" class="text-danger"></span>
+            </div>
+            <div>
+                <input asp-for="ImageAltText" placeholder="Image Alt Text" />
+                <label asp-for="ImageAltText" class="control-label"></label>
+                <span asp-validation-for="ImageAltText" class="text-danger"></span>
             </div>
             <div class="textarea">
                 <textarea asp-for="Body" placeholder="Blog Text"></textarea>
