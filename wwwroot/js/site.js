@@ -1,6 +1,6 @@
 ﻿// AJAX for blog post pages
 $(function () {
-    $('#edit-items').on('click', '.pager a', function () {
+    $('.container').on('click', '.pager a', function () {
         var url = $(this).attr('href');
         $('.container').load(url);
         $(document).scrollTop($("main").offset().top);
