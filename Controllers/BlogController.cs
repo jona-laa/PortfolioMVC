@@ -32,9 +32,9 @@ namespace PortfolioMVC.Controllers
         {
             int pageSize = 2;
             double totalPosts = _context.Posts.Count();
-            var totalPages = Math.Ceiling(totalPosts / pageSize);
-            var previousPage = page - 1;
-            var nextPage = page + 1;
+            var totalPages = totalPosts / pageSize;
+            double previousPage = page - 1;
+            double nextPage = page + 1;
 
             ViewBag.PreviousPage = previousPage;
             ViewBag.HasPreviousPage = previousPage >= 0;
@@ -58,9 +58,9 @@ namespace PortfolioMVC.Controllers
         [Authorize, Route("Admin")]
         public IActionResult Admin(int page = 0)
         {
-            int pageSize = 3;
+            var pageSize = 2;
             double totalPosts = _context.Posts.Count();
-            var totalPages = Math.Ceiling(totalPosts / pageSize);
+            var totalPages = totalPosts / pageSize;
             var previousPage = page - 1;
             var nextPage = page + 1;
 
