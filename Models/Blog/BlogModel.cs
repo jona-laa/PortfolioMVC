@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http; 
 
-
 namespace PortfolioMVC.Models
 {
     public class BlogPost
