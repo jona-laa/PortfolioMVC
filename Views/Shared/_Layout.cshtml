@@ -53,7 +53,7 @@
 					</svg>
                 </a>
 
-                <!-- Main Menu -->
+                <!-- Main Menu - Blog page has different menu -->
                 @if(IsSectionDefined("blogMenu"))
                 {
                     RenderSection("blogMenu");
@@ -64,6 +64,7 @@
                 }
 			</nav>
 
+            <!-- Don't show social media links when logged in -->
             @if (!SignInManager.IsSignedIn(User))
             {
                 <div class="social">
@@ -87,6 +88,7 @@
 		</div>
         @if (SignInManager.IsSignedIn(User))
         {
+            <!-- If signed in show page specific or default hero content -->
             @if(IsSectionDefined("heroContent"))
             {
                 RenderSection("heroContent");
@@ -100,6 +102,7 @@
         }
         else 
         {
+            <!-- Show blog or default hero content -->
             @if(IsSectionDefined("heroContent"))
             {
                 @RenderSection("heroContent")

@@ -94,7 +94,7 @@ namespace PortfolioMVC.Controllers
         [HttpPost, Route("Create")]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Key,Title,ImageFile,ImageDescription,ImageAltText,Author,Body,Posted")] BlogPost blogPost)
+        public async Task<IActionResult> Create(BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {

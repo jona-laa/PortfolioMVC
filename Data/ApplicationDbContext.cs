@@ -6,10 +6,7 @@ namespace PortfolioMVC.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) {}
 
         public DbSet<About> About { get; set; }
         public DbSet<Skill> Skills { get; set; }
