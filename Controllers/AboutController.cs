@@ -40,16 +40,24 @@ namespace PortfolioMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Save image to wwwroot/images/uploads
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fileName = Path.GetFileNameWithoutExtension(about.ImageFile.FileName);
-                string extension = Path.GetExtension(about.ImageFile.FileName);
-                about.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
-                var path = Path.Combine($"{wwwRootPath}/images/uploads/about/", fileName);
-                
-                using(var fileStream = new FileStream(path, FileMode.Create))
+                try
                 {
-                    await about.ImageFile.CopyToAsync(fileStream);
+                    // Save image to wwwroot/images/uploads
+                    string wwwRootPath = _hostEnvironment.WebRootPath;
+                    string fileName = Path.GetFileNameWithoutExtension(about.ImageFile.FileName);
+                    string extension = Path.GetExtension(about.ImageFile.FileName);
+                    about.ImageName = fileName = fileName + DateTime.Now.ToString("yymmddss") + extension;
+                    var path = Path.Combine($"{wwwRootPath}/images/uploads/about/", fileName);
+                    
+                    using(var fileStream = new FileStream(path, FileMode.Create))
+                    {
+                        await about.ImageFile.CopyToAsync(fileStream);
+                    }
+                }
+                catch
+                {
+                    ViewBag.ImageError = "Please upload image too, would ya? Mkay.";
+                    return View();
                 }
 
                 _context.Add(about);

@@ -27,7 +27,7 @@
             <div>
                 <input asp-for="ImageFile" />
                 <label asp-for="ImageFile"></label>
-                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <span asp-validation-for="ImageFile" class="text-danger">@ViewBag.ImageError</span>
             </div>
             <div>
                 <input asp-for="ImageDescription" class="form-control" placeholder="Image Description" />
