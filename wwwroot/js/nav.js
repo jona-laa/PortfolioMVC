@@ -23,11 +23,24 @@ const hideMenu = () => {
 
   if (window.pageYOffset > 100) {
     if (prevScrollpos > currentScrollPos) {
+      // Header
       elementToggle(header, 'top', '0');
+      header.setAttribute('aria-hidden', 'false');
+
+      // Menu
       elementDisplay(mainMenu, 'none');
+
+      if (window.innerWidth <= 812) {
+        // Toggle
+        mainMenuToggle.setAttribute('aria-hidden', 'false');
+      }
     } else {
       elementToggle(header, 'top', '-120px');
+      header.setAttribute('aria-hidden', 'true');
       elementDisplay(mainMenu, 'none');
+      mainMenuToggle.setAttribute('aria-hidden', 'true');
+      mainMenu.setAttribute('aria-hidden', 'true');
+
     }
   }
 
@@ -36,11 +49,23 @@ const hideMenu = () => {
 
 
 
+// Set WAI-ARIA on page load
+window.onload = () => {
+  if (window.innerWidth <= 812) {
+    mainMenuToggle.setAttribute('aria-hidden', 'false');
+    mainMenuToggle.setAttribute('aria-expanded', 'false');
+    mainMenu.setAttribute('aria-hidden', 'true');
+  } else {
+    mainMenuToggle.setAttribute('aria-hidden', 'true');
+    mainMenuToggle.setAttribute('aria-expanded', 'true');
+    mainMenu.setAttribute('aria-hidden', 'false');
+  }
+}
+
+
+
 // Toggle mobile menu
 $('#main-menu-toggle').click(function () {
-  $('.main-menu ul').slideToggle(200, function () {
-  });
-
   if (mainMenu.getAttribute('aria-hidden') == 'false') {
     mainMenu.setAttribute('aria-hidden', 'true');
     mainMenuToggle.setAttribute('aria-expanded', 'false');
@@ -48,6 +73,9 @@ $('#main-menu-toggle').click(function () {
     mainMenu.setAttribute('aria-hidden', 'false');
     mainMenuToggle.setAttribute('aria-expanded', 'true');
   }
+
+  $('.main-menu ul').slideToggle(200, function () {
+  });
 });
 
 
