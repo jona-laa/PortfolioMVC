@@ -43,7 +43,7 @@ const hideMenu = () => {
 
     }
   }
-
+  
   prevScrollpos = currentScrollPos;
 }
 
